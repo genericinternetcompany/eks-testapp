@@ -17,3 +17,10 @@ WORKDIR /app
 COPY --from=build /app .
 EXPOSE 80
 ENTRYPOINT ["dotnet", "Kubernetes-testApp.dll"]
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim-arm64v8
+WORKDIR /app
+COPY --from=build /app .
+EXPOSE 80
+ENTRYPOINT ["dotnet", "Kubernetes-testApp.dll"]
